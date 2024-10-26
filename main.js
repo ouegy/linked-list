@@ -17,16 +17,18 @@ class LinkedList {
         }
     }
     addFirst(value) {
-        this.head = new Node(value);
+        this["head"] = new Node(value);
     }
     hasNext(node) {
         if ((node.next = null)) return false;
     }
     traverse(head) {
+        let tail;
         while (head.next != null) {
             head = head.next;
         }
-        return head;
+        tail = head;
+        return tail;
     }
     prepend(value) {
         const node = new Node(value);
@@ -36,12 +38,23 @@ class LinkedList {
     }
     size() {
         let count = 0;
-        while (this.head != null) {
-            this.head = this.head.next;
+        let head = this.getHead();
+        while (head.next != null) {
+            head = head.next;
             count++;
         }
         console.log(count);
         return count;
+    }
+    tail() {
+        let tail = this.traverse(this.head);
+        console.log(tail);
+    }
+
+    getHead() {
+        let head = this.head;
+        console.log(head);
+        return head;
     }
 }
 
@@ -53,8 +66,11 @@ list.append("parrot");
 list.append("hamster");
 list.append("snake");
 list.append("turtle");
+
 list.prepend("chicken");
 
+list.tail();
+list.getHead();
 list.size();
 
 console.log(list);
