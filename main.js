@@ -49,13 +49,41 @@ class LinkedList {
     tail() {
         let tail = this.traverse(this.head);
         console.log(tail);
+        return tail;
     }
-
     getHead() {
         let head = this.head;
         console.log(head);
         return head;
     }
+    at(index) {
+        if (index == 0) return;
+        if (index == 1) return this.getHead();
+        let head = this.getHead();
+        for (let i = 0; i < index; i++) {
+            head = head.next;
+        }
+        console.log(head);
+        return head;
+    }
+    pop() {
+        let size = this.size();
+        let secondLast = this.at(size - 1);
+        secondLast.next = null;
+    }
+    contains(val) {
+        let head = this.head;
+        while (head.next != null) {
+            let value = head.value;
+            if (value == val) {
+                console.log("value: " + value);
+                return true;
+            }
+            head = head.next;
+        }
+        return false;
+    }
+    find(val) {}
 }
 
 let list = new LinkedList();
@@ -67,10 +95,14 @@ list.append("hamster");
 list.append("snake");
 list.append("turtle");
 
+console.log(list.contains("foo"));
+
 list.prepend("chicken");
 
 list.tail();
-list.getHead();
+list.pop();
+list.size();
+list.pop();
 list.size();
 
 console.log(list);
