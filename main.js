@@ -83,7 +83,29 @@ class LinkedList {
         }
         return false;
     }
-    find(val) {}
+    find(val) {
+        let head = this.head;
+        let index = 0;
+        while (head.next != null) {
+            let value = head.value;
+
+            if (value == val) {
+                console.log("value: " + value);
+                return index;
+            }
+            index++;
+            head = head.next;
+        }
+    }
+    toString() {
+        let head = this.head;
+        let result = `( ${head.value} )`;
+        for (let i = 1; i < this.size(); i++) {
+            result += ` => ( ${head.next.value} )`;
+            head = head.next;
+        }
+        return result;
+    }
 }
 
 let list = new LinkedList();
@@ -94,6 +116,10 @@ list.append("parrot");
 list.append("hamster");
 list.append("snake");
 list.append("turtle");
+
+console.log(list.toString());
+
+console.log(list.find("snake"));
 
 console.log(list.contains("foo"));
 
